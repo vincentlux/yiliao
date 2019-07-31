@@ -1,7 +1,8 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import { Button, Form, FormGroup, Label, Input, Alert, Spinner } from 'reactstrap';
 
-export default class Login extends React.Component {
+export default class LoginPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -43,8 +44,14 @@ export default class Login extends React.Component {
             })
         })
         .then(res => res.json())
-        .then(items => this.setState({"login": items.login, "loading": false}))
+        .then(items => this.setState({"login": items.login, "loading": false}),()=>this.handleRedirect)
+
         .catch(err => console.log(err))
+    }
+
+    handleRedirect = () => {
+        console.log('sd')
+        console.log(this.state.login)
     }
 
     render() {
@@ -64,7 +71,8 @@ export default class Login extends React.Component {
                     </Button>
                 </Form>
                 {this.state.loading?<Spinner color="primary" />:''}
-                {this.state.login==='failure'?<Alert color='danger'>用户名或密码不正确</Alert>:''}
+                {this.state.login==='failure'?<Alert color='danger'>用户名或密码不正确</Alert>:
+                    this.state.login==='success'?<Redirect to={"/user?"+this.state.username} />:''}
             </div>
 
         );
