@@ -44,14 +44,8 @@ export default class LoginPage extends React.Component {
             })
         })
         .then(res => res.json())
-        .then(items => this.setState({"login": items.login, "loading": false}),()=>this.handleRedirect)
-
+        .then(items => this.props.app.authenticate(items,res=>this.setState({"login": res, "loading": false})))
         .catch(err => console.log(err))
-    }
-
-    handleRedirect = () => {
-        console.log('sd')
-        console.log(this.state.login)
     }
 
     render() {
@@ -72,7 +66,7 @@ export default class LoginPage extends React.Component {
                 </Form>
                 {this.state.loading?<Spinner color="primary" />:''}
                 {this.state.login==='failure'?<Alert color='danger'>用户名或密码不正确</Alert>:
-                    this.state.login==='success'?<Redirect to={"/user?"+this.state.username} />:''}
+                    this.state.login==='success'?<Redirect to={{ pathname: "/user", search: "?name="+this.state.username, state: {username: this.state.username} }} />:''}
             </div>
 
         );

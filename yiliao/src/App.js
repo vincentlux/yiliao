@@ -3,31 +3,31 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import LoginPage from './login/LoginPage';
 import ConsolePage from './console/ConsolePage';
+import PrivateRoute from './util/PrivateRoute';
 
-function requireAuth(nextState, replace, next) {
-    console.log('de')
-    /**
-    if(this.state.login!=='success') {
-        replace({
-            pathname: "/",
-            state: {nextPathname: nextState.location.pathname}
-        });
+export default class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {authed: false};
     }
-    next();
-    **/
-}
 
-function App() {
-    return (
-        <Router>
-            <div className="App">
-                <Switch>
-                    <Route path="/user" component={ConsolePage} render={requireAuth} />
-                    <Route component={LoginPage} />
-                </Switch>
-            </div>
-        </Router>
-  );
-}
+    authenticate(items,fun) {
+        if(items.login==='success') {
+            this.setState({"authed": true});
+        }
+        fun(items.login);
+    }
 
-export default App;
+    render() {
+        return (
+            <Router>
+                <div className="App">
+                    <Switch>
+                        <PrivateRoute path="/user" component={ConsolePage} authed={this.state.authed} />
+                        <Route render={(props) => <LoginPage {...props} app={this} />} />
+                    </Switch>
+                </div>
+            </Router>
+        );
+    }
+}
