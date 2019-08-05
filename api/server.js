@@ -26,6 +26,14 @@ var db = require('knex')({
 // use bcrypt to hash password
 const bcrypt = require('bcrypt');
 
+const OSS = require('ali-oss');
+let client = new OSS({
+  region: process.env.ACCESSRG,
+  accessKeyId: process.env.ACCESSID,
+  accessKeySecret: process.env.ACCESSSC,
+  bucket: process.env.ACCESSBK
+});
+
 
 // test db connection serverside
 // db.select('*').from('account')
