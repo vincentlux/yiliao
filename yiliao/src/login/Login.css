@@ -1,0 +1,68 @@
+#loginBox {
+	width: 50%;
+	margin: auto;
+}
+
+#loginTitle {
+	font-size: 20px;
+	margin-top: 15px;
+	margin-bottom: 10px;
+}
+
+.loginLabel{
+    float: left;
+}
+
+.loginInput {
+	width: 100%;
+	height: 50px;
+	margin-bottom: 10px;
+	border: 2px solid #d1d1d1;
+	border-radius: 4px;
+
+	padding-left: 10px;
+	padding-right: 10px;
+	background-color: #ffffff;
+}
+
+.loginInput:hover {
+	box-shadow: inset 0 0 1px #616161;
+}
+
+.loginInput:focus {
+	outline: none;
+	border: 2px solid #c1c1c1;
+	background-color: #f1f1f1;
+}
+
+#loginButton {
+	width: 80px;
+	margin-top: 20px;
+	margin-bottom: 30px;
+	border: none;
+	border-radius: 4px;
+	background-color: #a1a1a1;
+
+	color: white;
+}
+
+#loginButton:hover {
+	box-shadow: inset 0 0 2px #616161;
+}
+
+#loginButton:focus {
+	outline: none;
+}
+
+#loginButton:active{
+	box-shadow: inset 1px 1px 2px #616161;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover {
+    -webkit-box-shadow: 0 0 0 30px #ffffff inset !important;
+}
+
+input:-webkit-autofill:focus {
+	-webkit-box-shadow: 0 0 0 30px #f1f1f1 inset !important;
+}
