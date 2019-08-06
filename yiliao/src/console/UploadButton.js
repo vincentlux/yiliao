@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'reactstrap';
 
-import axios from 'axios';
+//import axios from 'axios';
 
 export default class UploadButton extends React.Component {
     constructor(props) {
@@ -16,13 +16,10 @@ export default class UploadButton extends React.Component {
 
         var formData = new FormData();
         formData.append('file', file)
-        formData.append('name', 'temp')
+        //formData.append('name', 'temp')
         if (filetype === "application/zip") {
             const options = {
                 method: 'POST',
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                },
                 body: formData,
             };
             fetch('http://localhost:3001/upload', options)
@@ -38,7 +35,7 @@ export default class UploadButton extends React.Component {
             //         'Content-Type': 'multipart/form-data'
             //       }
             //     },
-                
+
             // ).then((res)=> console.log(res))
             // .catch(err => console.log(err));
 
@@ -51,10 +48,12 @@ export default class UploadButton extends React.Component {
     render() {
         return (
             <NavLink>
-                <input type="file" id={this.props.id} style={{display: "none"}} onChange={this.onUploadFileChange} accept="application/zip" />
-                <label htmlFor={this.props.id}>
-                    {this.props.children}
-                </label>
+                <form>
+                    <input type="file" id={this.props.id} style={{display: "none"}} onChange={this.onUploadFileChange} accept="application/zip" />
+                    <label htmlFor={this.props.id}>
+                        {this.props.children}
+                    </label>
+                </form>
             </NavLink>
         );
     }

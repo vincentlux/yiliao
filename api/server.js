@@ -12,7 +12,6 @@ const bodyParser = require('body-parser') // turns response into usable format
 const cors = require('cors')  // allows/disallows cross-site communication
 const morgan = require('morgan') // logs requests
 
-
 var db = require('knex')({
     client: 'pg',
     connection: {
@@ -36,7 +35,15 @@ let client = new OSS({
 
 // use multer to handle upload
 var multer  = require('multer')
-var upload = multer({ dest: 'uploads/' })
+var storage= multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, '/uploads')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now())
+  }
+})
+var upload = multer({ storage: storage })
 
 // test db connection serverside
 // db.select('*').from('account')
@@ -70,14 +77,14 @@ app.use(morgan('combined')) // use 'tiny' or 'combined'
 
 // test for receiving post file
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+// app.use(express.json());
 
 
 // App Routes - Auth
 app.get('/', (req, res) => res.send('hello world'))
 app.get('/testDBConn', (req, res) => main.testDBConn(req, res, db))
 app.post('/auth', (req, res) => main.auth(req, res, db, bcrypt))
-app.post('/upload', upload.single('temp.zip'), (req, res) => main.upload(req, res, client, db))
+app.post('/upload', upload.single('file'), (req, res) => main.upload(req, res, client, db))
 
 app.post('/crud', (req, res) => main.postTableData(req, res, db))
 app.put('/crud', (req, res) => main.putTableData(req, res, db))

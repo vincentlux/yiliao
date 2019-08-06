@@ -95,6 +95,7 @@ const auth = (req, res, db, bcrypt) => {
 const upload = (req, res, store, db) => {
   const filename = req.file
   console.log('开饭店')
+  console.log(req.body)
   console.log(req.file)
   // console.log(req)
   // console.log(req.body)
