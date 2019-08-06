@@ -8,15 +8,15 @@ export default class UploadButton extends React.Component {
         super(props);
     }
 
-    onUploadFileChange(e) {
+    onUploadFileChange = (e) => {
         const file = e.target.files[0];
         console.log(file);
         const filename = file.name;
         const filetype = file.type || filename.substring(filename.lastIndexOf('.'));
 
         var formData = new FormData();
-        formData.append('file', file)
-        //formData.append('name', 'temp')
+        formData.append('file', file);
+        formData.append('user', this.props.user)
         if (filetype === "application/zip") {
             const options = {
                 method: 'POST',
@@ -27,20 +27,8 @@ export default class UploadButton extends React.Component {
             .then(res => console.log(res))
             .catch(err => console.log(err));
 
-
-            // axios.post( 'http://localhost:3001/upload',
-            //     formData,
-            //     {
-            //       headers: {
-            //         'Content-Type': 'multipart/form-data'
-            //       }
-            //     },
-
-            // ).then((res)=> console.log(res))
-            // .catch(err => console.log(err));
-
         } else {
-            throw new Error("Unknown file type\'" + filetype + "\'");
+            throw new Error("不支持文件格式\'" + filetype + "\'");
         }
 
     }

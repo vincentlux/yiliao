@@ -14,23 +14,6 @@ export default class LoginPage extends React.Component {
         }
     }
 
-    // testDBConn() {
-    //     fetch('http://localhost:3001/testDBConn')
-    //         .then(res => res.json())
-    //         .then(items => console.log(items))
-    //         .catch(err => console.log(err))
-    // }
-    componentDidMount(){
-        // this.testDBConn()
-
-        // if item exists, populate the state with proper data
-        // if(this.props.item){
-            // const { id, first, last, email, phone, location, hobby } = this.props.item
-            // this.setState({ id, first, last, email, phone, location, hobby })
-        // }
-
-    }
-
     handleSubmit = (e) => {
         e.preventDefault();
         this.setState({"login": '' ,"loading": true})
@@ -64,7 +47,7 @@ export default class LoginPage extends React.Component {
                 </form>
                 {this.state.loading?<Spinner color="secondary" />:''}
                 {this.state.login==='failure'?<Alert color='danger'>用户名或密码不正确</Alert>:
-                    this.state.login==='success'?<Redirect push to={{ pathname: "/user", search: "?name="+this.state.username, state: {username: this.state.username} }} />:''}
+                    this.state.login==='success'?<Redirect push to={{ pathname: "/user", search: "?name="+this.state.username, state: {user: this.state.username} }} />:''}
             </div>
 
         );

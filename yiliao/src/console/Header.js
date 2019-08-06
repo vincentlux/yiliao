@@ -5,17 +5,18 @@ import UploadButton from './UploadButton.js';
 export default class Header extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {user: this.props.user};
     }
 
     render() {
         return (
       <div>
         <Navbar color="danger" light expand="md">
-          <NavbarBrand>DGB 公司/{this.props.username}</NavbarBrand>
+          <NavbarBrand>DGB 公司/{this.state.user}</NavbarBrand>
           <NavbarToggler />
             <Nav className="ml-auto" navbar>
                 <NavItem>
-                    <UploadButton id="upload">上传文件</UploadButton>
+                    <UploadButton id="upload" user={this.state.user}>上传文件</UploadButton>
                 </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>

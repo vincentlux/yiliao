@@ -37,10 +37,10 @@ let client = new OSS({
 var multer  = require('multer')
 var storage= multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, '/uploads')
+    cb(null, './uploads')
   },
   filename: function (req, file, cb) {
-    cb(null, file.fieldname + '-' + Date.now())
+    cb(null, file.originalname)
   }
 })
 var upload = multer({ storage: storage })
@@ -72,12 +72,12 @@ const corsOptions = {
 
 app.use(helmet())
 app.use(cors(corsOptions))
-app.use(bodyParser.json())
+// app.use(bodyParser.json())
 app.use(morgan('combined')) // use 'tiny' or 'combined'
 
 // test for receiving post file
 app.use(express.urlencoded({ extended: true }));
-// app.use(express.json());
+app.use(express.json());
 
 
 // App Routes - Auth

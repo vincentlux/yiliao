@@ -93,17 +93,14 @@ const auth = (req, res, db, bcrypt) => {
 }
 
 const upload = (req, res, store, db) => {
-  const filename = req.file
-  console.log('开饭店')
-  console.log(req.body)
+  const file = req.file
+  const {user} = req.body
   console.log(req.file)
-  // console.log(req)
-  // console.log(req.body)
-  // console.log(req.file)
-  // console.log(req.keys)
-  //console.log({file})
-  // console.log(req.files)
+  console.log(user)
 
+  store.put('test/test.zip',file.destination+'/'+file.filename).then(res => {
+    console.log(res)
+  })
 }
 
 module.exports = {
