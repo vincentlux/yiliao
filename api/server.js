@@ -68,6 +68,11 @@ app.use(cors(corsOptions))
 app.use(bodyParser.json())
 app.use(morgan('combined')) // use 'tiny' or 'combined'
 
+// test for receiving post file
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+
 // App Routes - Auth
 app.get('/', (req, res) => res.send('hello world'))
 app.get('/testDBConn', (req, res) => main.testDBConn(req, res, db))
