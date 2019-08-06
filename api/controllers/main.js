@@ -92,11 +92,20 @@ const auth = (req, res, db, bcrypt) => {
 
 }
 
+const upload = (req, res, store, db) => {
+  const filename = req.file
+  console.log('开饭店')
+  //console.log({file})
+  console.log(req)
+
+}
+
 module.exports = {
   testDBConn,
   getTableData,
   postTableData,
   putTableData,
   deleteTableData,
+  upload,
   auth
 }

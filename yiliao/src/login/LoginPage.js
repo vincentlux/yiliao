@@ -14,14 +14,14 @@ export default class LoginPage extends React.Component {
         }
     }
 
-    testDBConn() {
-        fetch('http://localhost:3001/testDBConn')
-            .then(res => res.json())
-            .then(items => console.log(items))
-            .catch(err => console.log(err))
-    }
+    // testDBConn() {
+    //     fetch('http://localhost:3001/testDBConn')
+    //         .then(res => res.json())
+    //         .then(items => console.log(items))
+    //         .catch(err => console.log(err))
+    // }
     componentDidMount(){
-        this.testDBConn()
+        // this.testDBConn()
 
         // if item exists, populate the state with proper data
         // if(this.props.item){
