@@ -16,15 +16,16 @@ export default class UploadButton extends React.Component {
 
         var formData = new FormData();
         formData.append('file', file);
-        formData.append('user', this.props.user)
+        formData.append('userid', this.props.userid)
         if (filetype === "application/zip") {
             const options = {
                 method: 'POST',
                 body: formData,
             };
+            this.props.console.isUploading();
             fetch('http://localhost:3001/upload', options)
-            // .then(res => res.json())
-            .then(res => console.log(res))
+            .then(res => res.json())
+            .then(res => this.props.console.uploadStatus(res))
             .catch(err => console.log(err));
 
         } else {

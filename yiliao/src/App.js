@@ -15,7 +15,7 @@ export default class App extends React.Component {
         if(items.login==='success') {
             this.setState({"authed": true});
         }
-        fun(items.login);
+        fun(items);
     }
 
     render() {

@@ -73,7 +73,7 @@ const deleteTableData = (req, res, db) => {
 
 const auth = (req, res, db, bcrypt) => {
   const {username, password} = req.body
-  db('account').where({username}).select('password')
+  db('account').where({username}).select('password','user_id')
     .then(item => {
       // no such user
       if (item.length!==1) {
@@ -81,9 +81,9 @@ const auth = (req, res, db, bcrypt) => {
       } else {
         bcrypt.compare(password, item[0].password, function(err,hashres) {
           if(hashres) {
-            res.json({login: 'success'})
+            res.json({login: 'success',userid: item[0].user_id})
           } else {
-            res.json({login: 'failure'})
+            res.json({login: 'failure',userid: ''})
           }
         })
       }
@@ -94,12 +94,11 @@ const auth = (req, res, db, bcrypt) => {
 
 const upload = (req, res, store, db) => {
   const file = req.file
-  const {user} = req.body
-  console.log(req.file)
-  console.log(user)
+  const {userid} = req.body
 
-  store.put('test/test.zip',file.destination+'/'+file.filename).then(res => {
-    console.log(res)
+  store.put(userid+'/'+file.filename,file.destination+'/'+file.filename).then(response => {
+    console.log(response.res.status)
+    response.res.status === 200?res.json({upload: 'success'}):res.json({upload: 'failure'})
   })
 }
 
