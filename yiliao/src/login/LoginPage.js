@@ -9,6 +9,7 @@ export default class LoginPage extends React.Component {
         this.state = {
             userid: '',
             username: '',
+            userrole: '',
             password: '',
             loading: false,
             login: ''
@@ -29,7 +30,7 @@ export default class LoginPage extends React.Component {
             })
         })
         .then(res => res.json())
-        .then(items => this.props.app.authenticate(items,res=>this.setState({"login": res.login, "loading": false, userid: res.userid})))
+        .then(items => this.props.app.authenticate(items,res=>this.setState({"login": res.login, "loading": false, userid: res.userid, userrole: res.userrole})))
         .catch(err => console.log(err))
     }
 
@@ -48,7 +49,7 @@ export default class LoginPage extends React.Component {
                 </form>
                 {this.state.loading?<Spinner color="secondary" />:''}
                 {this.state.login==='failure'?<Alert color='danger'>用户名或密码不正确</Alert>:
-                    this.state.login==='success'?<Redirect push to={{ pathname: "/user", search: "?name="+this.state.username, state: {user: this.state.username, userid: this.state.userid}}} />:''}
+                    this.state.login==='success'?<Redirect push to={{ pathname: "/user", search: "?name="+this.state.username, state: {user: this.state.username, userid: this.state.userid, userrole: this.state.userrole}}} />:''}
             </div>
 
         );

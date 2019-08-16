@@ -83,13 +83,16 @@ app.use(express.json());
 // App Routes - Auth
 app.get('/', (req, res) => res.send('hello world'))
 app.get('/testDBConn', (req, res) => main.testDBConn(req, res, db))
-app.post('/auth', (req, res) => main.auth(req, res, db, bcrypt))
+app.post('/auth', (req, res) => main.auth(req, res, db, bcrypt, process.env.SUPERUSERID))
 app.post('/upload', upload.single('file'), (req, res) => main.upload(req, res, client, db))
+app.post('/getFileList', (req, res) => main.getFileList(req, res, db, process.env.SUPERUSERID))
+app.post('/createUser', (req, res) => main.createUser(req, res, db, bcrypt, process.env.NORMALUSERID))
 
 app.post('/crud', (req, res) => main.postTableData(req, res, db))
 app.put('/crud', (req, res) => main.putTableData(req, res, db))
 app.delete('/crud', (req, res) => main.deleteTableData(req, res, db))
-
+app.get('/getUserList', (req, res) => main.getUserList(req, res, db))
+app.post('/changePassword', (req, res) => main.changePassword(req, res, db, bcrypt))
 // App Server Connection
 app.listen(process.env.PORT || 3001, () => {
     console.log(`app is running on port ${process.env.PORT || 3001}`)
