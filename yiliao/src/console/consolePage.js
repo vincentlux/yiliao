@@ -16,6 +16,7 @@ export default class ConsolePage extends React.Component {
             isChanging: false,
             uploadSuccess: '',
             fileUpdate: false,
+            userCreate: false,
             createSuccess: '',
             changeSuccess: '',
         };
@@ -46,7 +47,7 @@ export default class ConsolePage extends React.Component {
 
     createStatus(items) {
         if(items.create === 'success') {
-            this.setState({'isCreating': false, 'createSuccess': 'yes', 'fileUpdate': !this.state.fileUpdate});
+            this.setState({'isCreating': false, 'createSuccess': 'yes', 'userCreate': !this.state.userCreate});
         } else {
             this.setState({'isCreating': false, 'createSuccess': 'duplicate'});
         }
@@ -75,7 +76,7 @@ export default class ConsolePage extends React.Component {
                 {this.state.isChanging?<Spinner color="secondary" />:''}
                 {this.state.changeSuccess==='yes'?<Alert color='primary'>修改成功</Alert>:
                     this.state.changeSuccess==='no'?<Alert color='danger'>旧密码错误</Alert>:''}
-                <FileTable userid={this.state.userid} userrole={this.state.userrole} fileUpdate={this.state.fileUpdate} />
+                <FileTable userid={this.state.userid} userrole={this.state.userrole} fileUpdate={this.state.fileUpdate} userCreate={this.state.userCreate} />
             </div>
         );
     }

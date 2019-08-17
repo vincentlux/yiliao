@@ -1,6 +1,26 @@
+#background {
+	position: fixed;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(#71c7ec, #107dac);
+
+    display: flex;
+  	flex-direction: column;
+  	justify-content: center;
+}
+
 #loginBox {
-	width: 50%;
+	width: 500px;
+	height: 320px;
 	margin: auto;
+	border-radius: 10px;
+	background-color: white;
+}
+
+#loginForm {
+	width: 70%;
+	margin: auto;
+	padding-top: 20px;
 }
 
 #loginTitle {
@@ -9,39 +29,41 @@
 	margin-bottom: 10px;
 }
 
-.loginLabel{
-    float: left;
+#loginWord {
+	font-size: 20px;
+	font-weight: bold;
 }
 
 .loginInput {
 	width: 100%;
 	height: 50px;
 	margin-bottom: 10px;
-	border: 2px solid #d1d1d1;
-	border-radius: 4px;
-
+	border-right: 0;
+	border-left: 0;
+	border-top: 0;
+	border-bottom:1 solid black;
 	padding-left: 10px;
 	padding-right: 10px;
 	background-color: #ffffff;
+
 }
 
 .loginInput:hover {
-	box-shadow: inset 0 0 1px #616161;
+
 }
 
 .loginInput:focus {
 	outline: none;
-	border: 2px solid #c1c1c1;
-	background-color: #f1f1f1;
 }
 
 #loginButton {
-	width: 80px;
-	margin-top: 20px;
+	width: 100%;
+	height: 50px;
+	margin-top: 30px;
 	margin-bottom: 30px;
 	border: none;
 	border-radius: 4px;
-	background-color: #a1a1a1;
+	background-color: #189ad3;
 
 	color: white;
 }
@@ -59,10 +81,7 @@
 }
 
 input:-webkit-autofill,
-input:-webkit-autofill:hover {
-    -webkit-box-shadow: 0 0 0 30px #ffffff inset !important;
-}
-
+input:-webkit-autofill:hover,
 input:-webkit-autofill:focus {
-	-webkit-box-shadow: 0 0 0 30px #f1f1f1 inset !important;
+    -webkit-box-shadow: 0 0 0 30px #ffffff inset !important;
 }

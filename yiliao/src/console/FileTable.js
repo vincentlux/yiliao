@@ -26,6 +26,10 @@ export default class FileTable extends React.Component {
         if(this.props.fileUpdate !== prevProps.fileUpdate) {
             this.getFileList();
         }
+        if(this.props.userCreate !== prevProps.userCreate) {
+            this.getUserList();
+        }
+
     }
 
     getFileList() {

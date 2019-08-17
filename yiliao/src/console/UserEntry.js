@@ -6,7 +6,8 @@ export default class UserEntry extends React.Component {
         this.state = {
             username: this.props.username,
             createOn: this.props.create_on.split('.')[0].replace('T',' '),
-            companyName: this.props.company_name,}
+            companyName: this.props.company_name,
+        }
     }
 
     render() {

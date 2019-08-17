@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'reactstrap';
+import './Console.css';
 
 //import axios from 'axios';
 
@@ -39,7 +40,7 @@ export default class UploadButton extends React.Component {
             <NavLink>
                 <form>
                     <input type="file" id={this.props.id} style={{display: "none"}} onChange={this.onUploadFileChange} accept="application/zip" />
-                    <label htmlFor={this.props.id}>
+                    <label id='uploadLabel' htmlFor={this.props.id}>
                         {this.props.children}
                     </label>
                 </form>

@@ -3,6 +3,7 @@ import { Button, Collapse, Navbar, NavbarBrand, Nav, NavLink, NavbarToggler, Nav
 import UploadButton from './UploadButton.js';
 import CreateUserButton from './CreateUserButton.js';
 import ChangePasswordButton from './ChangePasswordButton.js';
+import './Console.css'
 
 export default class Header extends React.Component {
     constructor(props) {
@@ -14,8 +15,8 @@ export default class Header extends React.Component {
         console.log(this.state.userrole);
         return (
       <div>
-        <Navbar color="danger" light expand="md">
-          <NavbarBrand>DGB 公司/{this.state.user}</NavbarBrand>
+        <Navbar light style={{backgroundColor: '#71c7ec'}} expand="md">
+          <NavbarBrand>XXX 公司</NavbarBrand>
             <Nav className="ml-auto" navbar>
               { this.state.userrole === 'super'?
                 <NavItem>
@@ -28,13 +29,9 @@ export default class Header extends React.Component {
               }
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
-                  设置
+                  {this.state.user}
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem>
-                    个人信息
-                  </DropdownItem>
-                  <DropdownItem divider />
                   <DropdownItem>
                     <ChangePasswordButton id="change" username={this.state.user} console={this.props.console}>修改密码</ChangePasswordButton>
                   </DropdownItem>
